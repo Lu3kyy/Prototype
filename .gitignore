@@ -1,0 +1,15 @@
+*.swp
+*.swo
+*~
+.DS_Store
+.vscode/
+.vs/
+*.user
+*.rej
+bin/
+obj/
+.env
+.env.local
+app.zip
+publish/
+*.log
