@@ -6,7 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+});
 builder.Services.AddScoped<GameService>();
 
 // No database services required for game-only API

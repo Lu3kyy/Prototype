@@ -15,10 +15,13 @@ public class GameController : ControllerBase
         _gameService = gameService;
     }
 
-    [HttpGet("test")]
-    public ActionResult<string> Test()
+    [HttpGet("random")]
+    public ActionResult<string> GetRandomChoice()
     {
-        return Ok("API is working! Use POST /api/Game/play with {\"move\": \"rock\"}");
+        var choices = new[] { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
+        var random = new Random();
+        var choice = choices[random.Next(choices.Length)];
+        return Ok(choice);
     }
 
     [HttpPost("play")]
