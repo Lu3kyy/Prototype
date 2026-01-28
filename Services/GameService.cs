@@ -14,7 +14,7 @@ public class GameService
         // Determine the outcome
         string outcome = DetermineOutcome(playerMove, cpuMove);
         string message = GenerateMessage(playerMove, cpuMove, outcome);
-
+        // Return the result
         return new GameResult
         {
             PlayerMove = playerMove,
@@ -24,12 +24,14 @@ public class GameService
         };
     }
 
+
+    // Helper methods
     private GameMove GetRandomMove()
     {
         int moveIndex = _random.Next(5);
         return (GameMove)moveIndex;
     }
-
+    // Determine the outcome of the game
     private string DetermineOutcome(GameMove playerMove, GameMove cpuMove)
     {
         if (playerMove == cpuMove)
@@ -76,7 +78,7 @@ public class GameService
             _ => "Draw"
         };
     }
-
+    // Generate a message based on the outcome
     private string GenerateMessage(GameMove playerMove, GameMove cpuMove, string outcome)
     {
         return outcome switch
@@ -86,7 +88,7 @@ public class GameService
             _ => $"{playerMove} vs {cpuMove} - It's a Draw!"
         };
     }
-
+    // Specific win messages
     private string GetWinMessage(GameMove playerMove, GameMove cpuMove)
     {
         return (playerMove, cpuMove) switch
@@ -104,7 +106,7 @@ public class GameService
             _ => "You Win!"
         };
     }
-
+    // Specific lose messages
     private string GetLoseMessage(GameMove playerMove, GameMove cpuMove)
     {
         return (playerMove, cpuMove) switch
