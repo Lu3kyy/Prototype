@@ -15,6 +15,12 @@ public class GameController : ControllerBase
         _gameService = gameService;
     }
 
+    [HttpGet("test")]
+    public ActionResult<string> Test()
+    {
+        return Ok("API is working! Use POST /api/Game/play with {\"move\": \"rock\"}");
+    }
+
     [HttpPost("play")]
     public ActionResult<GameResult> Play([FromBody] GameMoveRequest request)
     {
