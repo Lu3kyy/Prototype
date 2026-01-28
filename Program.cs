@@ -26,15 +26,24 @@ app.UseCors("AllowAll");
 app.MapControllers();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Enable Swagger in all environments for API documentation
+app.UseSwagger();
+app.UseSwaggerUI(c => 
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Game API v1");
+    c.RoutePrefix = string.Empty; // Serve Swagger UI at root URL
+});
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();
+
+// Add a root endpoint that redirects to Swagger
+app.MapGet("/", context => 
+{
+    context.Response.Redirect("/index.html");
+    return Task.CompletedTask;
+});
 
 app.Run();
